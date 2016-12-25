@@ -9,10 +9,12 @@
 import GameController
 import UIKit
 
-enum FocusStyle {
+public enum FocusStyle {
     case `default`, custom
 }
-class RateSlider: UIView {
+public class RateSlider: UIView {
+
+    public static var isDebug: Bool = false
 
     // MARK: Properties
     public var value: Float = 0.0 {
@@ -40,11 +42,11 @@ class RateSlider: UIView {
     private var config: Config?
 
     // MARK: Lifecycle
-    override func didMoveToSuperview() {
+    override public func didMoveToSuperview() {
         super.didMoveToSuperview()
     }
 
-    override func didMoveToWindow() {
+    override public func didMoveToWindow() {
         super.didMoveToWindow()
         layer.cornerRadius = cornerRadius
         update()
@@ -85,13 +87,18 @@ class RateSlider: UIView {
             invisibleStackview?.focusedIndex = Int(value)*2
         }
     }
+
+    // MARK: UIFocusEnvironment
     func isRateSliderContext(_ context: UIFocusUpdateContext) -> Bool {
         guard let v = context.nextFocusedView else {
             return false
         }
         return v.isDescendant(of: self) && v is InvisibleFocusView
     }
-    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    override public func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        guard focusStyle == .default else {
+            return
+        }
         coordinator.addCoordinatedAnimations({
             [weak self] in
             if let b = self?.isRateSliderContext(context), b {
