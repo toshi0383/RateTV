@@ -15,11 +15,13 @@ public enum FocusStyle {
 public class RateSlider: UIView {
 
     public static var isDebug: Bool = false
+    public var rateValueDidChange: ((Float)->())?
 
     // MARK: Properties
     public var value: Float = 0.0 {
         didSet {
             update()
+            rateValueDidChange?(value)
         }
     }
 
@@ -33,6 +35,7 @@ public class RateSlider: UIView {
     @IBInspectable public var cornerRadius: CGFloat = 5
     @IBInspectable public var maxRate: Int = 5
     @IBInspectable public var focusStyle: FocusStyle = .default
+    @IBInspectable public var labelize: Bool = false
 
     private var isHalfStep: Bool {
         return halfImage == nil
@@ -60,7 +63,9 @@ public class RateSlider: UIView {
             )
         }
         updateVisible()
-        updateInvisible()
+        if !labelize {
+            updateInvisible()
+        }
     }
     private func updateVisible() {
         if stackview == nil {
@@ -79,7 +84,7 @@ public class RateSlider: UIView {
             let v: InvisibleFocusStackView = InvisibleFocusStackView
                 .create(config: config!) {
                     [weak self] value in
-                    self?.stackview?.value = value
+                    self?.value = value
                 }
             addSubview(v)
             self.invisibleStackview = v
