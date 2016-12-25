@@ -263,10 +263,12 @@ class InvisibleFocusView: UIView {
         return true
     }
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        if context.nextFocusedView == self {
-            backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        } else {
-            backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.2)
+        if RateSlider.isDebug {
+            if context.nextFocusedView == self {
+                backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+            } else {
+                backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.2)
+            }
         }
     }
     override func updateConstraints() {
