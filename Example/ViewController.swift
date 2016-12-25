@@ -35,10 +35,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var output: RateSlider!
     override func viewDidLoad() {
         super.viewDidLoad()
+        input.value = 5.0
+        input2.value = 2.5
     }
 
     @IBAction func enableDebug() {
         RateSlider.isDebug = true
     }
 }
-

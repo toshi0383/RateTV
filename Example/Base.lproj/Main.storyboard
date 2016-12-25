@@ -25,7 +25,7 @@
                                 <rect key="frame" x="713" y="915" width="494" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="Toggle debug mode"/>
+                                <state key="normal" title="Enable debug mode"/>
                                 <connections>
                                     <action selector="enableDebug" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Eeu-9u-dH6"/>
                                 </connections>
@@ -34,7 +34,7 @@
                                 <rect key="frame" x="713" y="50" width="494" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="Toggle debug mode"/>
+                                <state key="normal" title="Enable debug mode"/>
                                 <connections>
                                     <action selector="enableDebug" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="D0r-dE-SZL"/>
                                 </connections>
