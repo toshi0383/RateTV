@@ -116,7 +116,6 @@ struct Config {
     let half: UIImage?
     let full: UIImage?
     let spacing: CGFloat
-    /// Note that this is multiplied.
     let maxRate: Int
     var maxRateDoubled: Int {
         return maxRate * 2
@@ -126,6 +125,9 @@ struct Config {
     }
     var stepCount: Int {
         return isHalfStep ? maxRateDoubled : maxRate
+    }
+    var stepSpacing: CGFloat {
+        return isHalfStep ? spacing/2 : spacing
     }
 }
 
@@ -222,7 +224,7 @@ class InvisibleFocusStackView: UIStackView {
         v.config = config
         v.maxRateDoubled = config.maxRateDoubled
         v.axis = .horizontal
-        v.spacing = 0
+        v.spacing = config.stepSpacing
         v.focusedIndexDidChange = focusedIndexDidChange
         return v
     }
