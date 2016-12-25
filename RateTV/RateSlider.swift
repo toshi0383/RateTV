@@ -87,6 +87,29 @@ class RateSlider: UIView {
             invisibleStackview?.focusedIndex = Int(value)*2
         }
     }
+    func isRateSliderContext(_ context: UIFocusUpdateContext) -> Bool {
+        guard let v = context.nextFocusedView else {
+            return false
+        }
+        return v.isDescendant(of: self) && v is InvisibleFocusView
+    }
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        coordinator.addCoordinatedAnimations({
+            [weak self] in
+            if let b = self?.isRateSliderContext(context), b {
+                self?.focus()
+            } else {
+                self?.unfocus()
+            }
+        }, completion: nil)
+    }
+    private func focus() {
+        backgroundColor = highlightedColor
+    }
+    private func unfocus() {
+        backgroundColor = originalColor
+    }
+    
 }
 
 // MARK: - Config
