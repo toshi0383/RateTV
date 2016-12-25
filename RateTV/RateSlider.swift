@@ -32,6 +32,9 @@ class RateSlider: UIView {
     @IBInspectable public var maxRate: Int = 5
     @IBInspectable public var focusStyle: FocusStyle = .default
 
+    private var isHalfStep: Bool {
+        return halfImage == nil
+    }
     private var stackview: RateStackView?
     private var invisibleStackview: InvisibleFocusStackView?
     private var config: Config?
@@ -70,16 +73,11 @@ class RateSlider: UIView {
         }
     }
     private func updateInvisible() {
-        guard let full = fullImage else {
-            fatalError("fullImage must not be nil.")
-        }
         if invisibleStackview == nil {
             let v: InvisibleFocusStackView = InvisibleFocusStackView
-                .create(maxRateDoubled: config!.maxRateDoubled,
-                        imageSize: full.size
-                ) {
-                    [weak self] index in
-                    self?.stackview?.value = Float(index)/2
+                .create(config: config!) {
+                    [weak self] value in
+                    self?.stackview?.value = value
                 }
             addSubview(v)
             self.invisibleStackview = v
@@ -122,6 +120,12 @@ struct Config {
     let maxRate: Int
     var maxRateDoubled: Int {
         return maxRate * 2
+    }
+    var isHalfStep: Bool {
+        return half != nil
+    }
+    var stepCount: Int {
+        return isHalfStep ? maxRateDoubled : maxRate
     }
 }
 
@@ -197,19 +201,26 @@ class Item: UIImageView {
 class InvisibleFocusStackView: UIStackView {
     private var maxRateDoubled: Int = 0
     var focusedIndex: Int = 0
-    var focusedIndexDidChange: ((Int)->())?
+    var focusedIndexDidChange: ((Float)->())?
+    var config: Config?
     private var imageSize: CGSize = .zero
     static func create
-        (maxRateDoubled: Int, imageSize: CGSize, focusedIndexDidChange: ((Int)->())?)
+        (config: Config, focusedIndexDidChange: ((Float)->())?)
         -> InvisibleFocusStackView
     {
-        let views: [InvisibleFocusView] = (0...maxRateDoubled).map{_ in
+        guard let full = config.full else {
+            fatalError("config.full must not be nil.")
+        }
+        let size = config.isHalfStep ?
+            CGSize(width: full.size.width/2, height: full.size.height) : full.size
+        let views: [InvisibleFocusView] = (0...config.stepCount).map{_ in
             let v = InvisibleFocusView()
-            v.size = imageSize
+            v.size = size
             return v
         }
         let v =  InvisibleFocusStackView(arrangedSubviews: views)
-        v.maxRateDoubled = maxRateDoubled
+        v.config = config
+        v.maxRateDoubled = config.maxRateDoubled
         v.axis = .horizontal
         v.spacing = 0
         v.focusedIndexDidChange = focusedIndexDidChange
@@ -224,7 +235,7 @@ class InvisibleFocusStackView: UIStackView {
         }
         if let index = arrangedSubviews.index(of: next) {
             focusedIndex = index
-            focusedIndexDidChange?(index)
+            focusedIndexDidChange?(config!.isHalfStep ? Float(index)/2 : Float(index))
         }
     }
     override func updateConstraints() {
@@ -241,6 +252,13 @@ class InvisibleFocusView: UIView {
     var size: CGSize = .zero
     override var canBecomeFocused: Bool {
         return true
+    }
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if context.nextFocusedView == self {
+            backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        } else {
+            backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.2)
+        }
     }
     override func updateConstraints() {
         translatesAutoresizingMaskIntoConstraints = false
