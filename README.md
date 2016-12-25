@@ -2,7 +2,7 @@ RateTV
 ---
 An awesome Rating view for tvOS.
 
-![](https://i.gyazo.com/a9de6416c14c793f6cee5ce7bf6637e5.gif)
+![](./images/screenshot.gif)
 
 Fully configurable from InterfaceBuilder.
 ![](./images/ib-config.png)
