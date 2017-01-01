@@ -44,6 +44,11 @@ public class RateSlider: UIView {
     private var invisibleStackview: InvisibleFocusStackView?
     private var config: Config?
 
+    // Layout Guides for vertical focus move.
+    // Without these, vertical focus move becomes a bit trickey to manage.
+    private var topFocusGuide: UIFocusGuide!
+    private var bottomFocusGuide: UIFocusGuide!
+
     // MARK: Lifecycle
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
@@ -88,12 +93,15 @@ public class RateSlider: UIView {
                 }
             addSubview(v)
             self.invisibleStackview = v
-        } else {
-            invisibleStackview?.focusedIndex = Int(value)*2
         }
     }
 
     // MARK: UIFocusEnvironment
+    public override var preferredFocusedView: UIView? {
+        // InvisibleFocusStackView knows which one to focus.
+        // `preferredFocusedView` is inferred automatically.
+        return invisibleStackview?.preferredFocusedView
+    }
     func isRateSliderContext(_ context: UIFocusUpdateContext) -> Bool {
         guard let v = context.nextFocusedView else {
             return false
@@ -112,6 +120,36 @@ public class RateSlider: UIView {
                 self?.unfocus()
             }
         }, completion: nil)
+
+        updateFocusGuide(context)
+    }
+
+    private func updateFocusGuide(_ context: UIFocusUpdateContext) {
+        if topFocusGuide == nil {
+            topFocusGuide = UIFocusGuide()
+            addLayoutGuide(topFocusGuide)
+            topFocusGuide.bottomAnchor.constraint(equalTo: topAnchor).isActive = true
+            topFocusGuide.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            topFocusGuide.heightAnchor.constraint(equalToConstant: 1).isActive = true
+            topFocusGuide.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        }
+        if bottomFocusGuide == nil {
+            bottomFocusGuide = UIFocusGuide()
+            addLayoutGuide(bottomFocusGuide)
+            bottomFocusGuide.topAnchor.constraint(equalTo: bottomAnchor).isActive = true
+            bottomFocusGuide.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            bottomFocusGuide.heightAnchor.constraint(equalToConstant: 1).isActive = true
+            bottomFocusGuide.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        }
+        if isRateSliderContext(context) {
+            topFocusGuide.isEnabled = false
+            bottomFocusGuide.isEnabled = false
+        } else {
+            topFocusGuide.isEnabled = true
+            topFocusGuide.preferredFocusedView = preferredFocusedView
+            bottomFocusGuide.isEnabled = true
+            bottomFocusGuide.preferredFocusedView = preferredFocusedView
+        }
     }
     private func focus() {
         backgroundColor = highlightedColor
@@ -214,7 +252,6 @@ class Item: UIImageView {
 // MARK: - Invisible
 class InvisibleFocusStackView: UIStackView {
     private var maxRateDoubled: Int = 0
-    var focusedIndex: Int = 0
     var focusedIndexDidChange: ((Float)->())?
     var config: Config?
     private var imageSize: CGSize = .zero
@@ -240,15 +277,21 @@ class InvisibleFocusStackView: UIStackView {
         v.focusedIndexDidChange = focusedIndexDidChange
         return v
     }
-    override var preferredFocusedView: UIView? {
-        return arrangedSubviews[focusedIndex]
-    }
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        guard let next = context.nextFocusedView else {
+        if let next = context.nextFocusedView, next.isDescendant(of: self) {
+            for v in arrangedSubviews {
+                v.isUserInteractionEnabled = true
+            }
+        } else if let previous = context.previouslyFocusedView, previous.isDescendant(of: self) {
+            let disabled = arrangedSubviews.filter{$0 != previous}
+            for v in disabled {
+                v.isUserInteractionEnabled = false
+            }
+        }
+        guard let next = context.nextFocusedView, next.isDescendant(of: self) else {
             return
         }
         if let index = arrangedSubviews.index(of: next) {
-            focusedIndex = index
             focusedIndexDidChange?(config!.isHalfStep ? Float(index)/2 : Float(index))
         }
     }
