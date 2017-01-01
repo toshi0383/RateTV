@@ -88,8 +88,6 @@ public class RateSlider: UIView {
                 }
             addSubview(v)
             self.invisibleStackview = v
-        } else {
-            invisibleStackview?.focusedIndex = Int(value)*2
         }
     }
 
@@ -214,7 +212,6 @@ class Item: UIImageView {
 // MARK: - Invisible
 class InvisibleFocusStackView: UIStackView {
     private var maxRateDoubled: Int = 0
-    var focusedIndex: Int = 0
     var focusedIndexDidChange: ((Float)->())?
     var config: Config?
     private var imageSize: CGSize = .zero
@@ -240,15 +237,21 @@ class InvisibleFocusStackView: UIStackView {
         v.focusedIndexDidChange = focusedIndexDidChange
         return v
     }
-    override var preferredFocusedView: UIView? {
-        return arrangedSubviews[focusedIndex]
-    }
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        guard let next = context.nextFocusedView else {
+        if let next = context.nextFocusedView, next.isDescendant(of: self) {
+            for v in arrangedSubviews {
+                v.isUserInteractionEnabled = true
+            }
+        } else if let previous = context.previouslyFocusedView, previous.isDescendant(of: self) {
+            let disabled = arrangedSubviews.filter{$0 != previous}
+            for v in disabled {
+                v.isUserInteractionEnabled = false
+            }
+        }
+        guard let next = context.nextFocusedView, next.isDescendant(of: self) else {
             return
         }
         if let index = arrangedSubviews.index(of: next) {
-            focusedIndex = index
             focusedIndexDidChange?(config!.isHalfStep ? Float(index)/2 : Float(index))
         }
     }
