@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/toshi0383/RateTV.svg?branch=travis)](https://travis-ci.org/toshi0383/RateTV)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+![Platform](https://img.shields.io/badge/Platform-tvOS%209%2B-blue.svg)
+[![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/Carthage/Carthage/master/LICENSE.md) 
+
 RateTV
 ---
 An awesome Rating view for tvOS.
