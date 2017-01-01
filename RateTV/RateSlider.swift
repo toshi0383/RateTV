@@ -44,6 +44,11 @@ public class RateSlider: UIView {
     private var invisibleStackview: InvisibleFocusStackView?
     private var config: Config?
 
+    // Layout Guides for vertical focus move.
+    // Without these, vertical focus move becomes a bit trickey to manage.
+    private var topFocusGuide: UIFocusGuide!
+    private var bottomFocusGuide: UIFocusGuide!
+
     // MARK: Lifecycle
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
@@ -92,6 +97,11 @@ public class RateSlider: UIView {
     }
 
     // MARK: UIFocusEnvironment
+    public override var preferredFocusedView: UIView? {
+        // InvisibleFocusStackView knows which one to focus.
+        // `preferredFocusedView` is inferred automatically.
+        return invisibleStackview?.preferredFocusedView
+    }
     func isRateSliderContext(_ context: UIFocusUpdateContext) -> Bool {
         guard let v = context.nextFocusedView else {
             return false
@@ -110,6 +120,36 @@ public class RateSlider: UIView {
                 self?.unfocus()
             }
         }, completion: nil)
+
+        updateFocusGuide(context)
+    }
+
+    private func updateFocusGuide(_ context: UIFocusUpdateContext) {
+        if topFocusGuide == nil {
+            topFocusGuide = UIFocusGuide()
+            addLayoutGuide(topFocusGuide)
+            topFocusGuide.bottomAnchor.constraint(equalTo: topAnchor).isActive = true
+            topFocusGuide.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            topFocusGuide.heightAnchor.constraint(equalToConstant: 1).isActive = true
+            topFocusGuide.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        }
+        if bottomFocusGuide == nil {
+            bottomFocusGuide = UIFocusGuide()
+            addLayoutGuide(bottomFocusGuide)
+            bottomFocusGuide.topAnchor.constraint(equalTo: bottomAnchor).isActive = true
+            bottomFocusGuide.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            bottomFocusGuide.heightAnchor.constraint(equalToConstant: 1).isActive = true
+            bottomFocusGuide.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        }
+        if isRateSliderContext(context) {
+            topFocusGuide.isEnabled = false
+            bottomFocusGuide.isEnabled = false
+        } else {
+            topFocusGuide.isEnabled = true
+            topFocusGuide.preferredFocusedView = preferredFocusedView
+            bottomFocusGuide.isEnabled = true
+            bottomFocusGuide.preferredFocusedView = preferredFocusedView
+        }
     }
     private func focus() {
         backgroundColor = highlightedColor
