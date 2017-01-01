@@ -79,9 +79,9 @@ public class RateSlider: UIView {
             )
             addSubview(stackview)
             self.stackview = stackview
-            stackview.value = initialValue
+            stackview.value = RatePoint(float: initialValue)
         } else {
-            stackview?.value = value
+            stackview?.value = RatePoint(float: value)
         }
     }
     private func updateInvisible() {
@@ -196,26 +196,26 @@ class RateStackView: UIStackView {
         v.config = config
         return v
     }
-    var value: Float {
+    var value: RatePoint {
         set(newValue) {
-            assert(newValue <= Float(config!.maxRate))
+            assert(newValue <= config!.maxRate)
             let items = arrangedSubviews.flatMap{$0 as? Item}
-            let compare = Int(round(newValue*10)) // 0-50
+            let compare = (newValue*10).intValue // 0-50
             for (i, v) in items.enumerated() {
                 let expectedZero: Int = i*10+3
                 let expectedFull: Int = (i+1)*10-3
                 if compare < expectedZero {
-                    v.value = 0.0
+                    v.value = .zero
                     if let image = config?.zero {
                         v.image = image
                     }
                 } else if expectedZero <= compare && compare <= expectedFull {
                     if let image = config?.half {
-                        v.value = 0.5
+                        v.value = RatePoint(number: 0, point: 5)
                         v.image = image
                     }
                 } else {
-                    v.value = 1.0
+                    v.value = RatePoint(number: 1, point: 0)
                     if let image = config?.full {
                         v.image = image
                     }
@@ -226,7 +226,7 @@ class RateStackView: UIStackView {
         get {
             return arrangedSubviews.flatMap{$0 as? Item}
                 .map{$0.value}
-                .reduce(0.0, +)
+                .reduce(RatePoint.zero, +)
         }
     }
     override func updateConstraints() {
@@ -240,7 +240,7 @@ class RateStackView: UIStackView {
 }
 
 class Item: UIImageView {
-    var value: Float = 0.0
+    var value: RatePoint = .zero
     override func updateConstraints() {
         translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalToConstant: frame.width).isActive = true

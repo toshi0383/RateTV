@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F3379BE1E1923E60009D66C /* RatePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3379BD1E1923E60009D66C /* RatePoint.swift */; };
+		1F3379C81E1927100009D66C /* RateTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEEE7E21E0B8C26003E4A02 /* RateTV.framework */; };
+		1F3379CF1E19272B0009D66C /* RatePointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3379CE1E19272B0009D66C /* RatePointTests.swift */; };
 		1FEEE7E71E0B8C26003E4A02 /* RateTV.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEEE7E51E0B8C26003E4A02 /* RateTV.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FEEE7EE1E0B8C51003E4A02 /* RateSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEE7ED1E0B8C51003E4A02 /* RateSlider.swift */; };
 		1FEEE7F61E0B9232003E4A02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEE7F51E0B9232003E4A02 /* AppDelegate.swift */; };
@@ -18,6 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1F3379C91E1927100009D66C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FEEE7D91E0B8C26003E4A02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FEEE7E11E0B8C26003E4A02;
+			remoteInfo = RateTV;
+		};
 		1FEEE8041E0B924F003E4A02 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1FEEE7D91E0B8C26003E4A02 /* Project object */;
@@ -42,6 +52,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1F3379BD1E1923E60009D66C /* RatePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatePoint.swift; sourceTree = "<group>"; };
+		1F3379C31E1927100009D66C /* RateTVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RateTVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F3379C71E1927100009D66C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F3379CE1E19272B0009D66C /* RatePointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatePointTests.swift; sourceTree = "<group>"; };
 		1FEEE7E21E0B8C26003E4A02 /* RateTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RateTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FEEE7E51E0B8C26003E4A02 /* RateTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateTV.h; sourceTree = "<group>"; };
 		1FEEE7E61E0B8C26003E4A02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +69,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1F3379C01E1927100009D66C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F3379C81E1927100009D66C /* RateTV.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1FEEE7DE1E0B8C26003E4A02 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -73,11 +95,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F3379C41E1927100009D66C /* RateTVTests */ = {
+			isa = PBXGroup;
+			children = (
+				1F3379C71E1927100009D66C /* Info.plist */,
+				1F3379CE1E19272B0009D66C /* RatePointTests.swift */,
+			);
+			path = RateTVTests;
+			sourceTree = "<group>";
+		};
 		1FEEE7D81E0B8C26003E4A02 = {
 			isa = PBXGroup;
 			children = (
 				1FEEE7E41E0B8C26003E4A02 /* RateTV */,
 				1FEEE7F41E0B9232003E4A02 /* Example */,
+				1F3379C41E1927100009D66C /* RateTVTests */,
 				1FEEE7E31E0B8C26003E4A02 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,6 +119,7 @@
 			children = (
 				1FEEE7E21E0B8C26003E4A02 /* RateTV.framework */,
 				1FEEE7F31E0B9232003E4A02 /* Example.app */,
+				1F3379C31E1927100009D66C /* RateTVTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +130,7 @@
 				1FEEE7E51E0B8C26003E4A02 /* RateTV.h */,
 				1FEEE7E61E0B8C26003E4A02 /* Info.plist */,
 				1FEEE7ED1E0B8C51003E4A02 /* RateSlider.swift */,
+				1F3379BD1E1923E60009D66C /* RatePoint.swift */,
 			);
 			path = RateTV;
 			sourceTree = "<group>";
@@ -127,6 +161,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		1F3379C21E1927100009D66C /* RateTVTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F3379CB1E1927100009D66C /* Build configuration list for PBXNativeTarget "RateTVTests" */;
+			buildPhases = (
+				1F3379BF1E1927100009D66C /* Sources */,
+				1F3379C01E1927100009D66C /* Frameworks */,
+				1F3379C11E1927100009D66C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F3379CA1E1927100009D66C /* PBXTargetDependency */,
+			);
+			name = RateTVTests;
+			productName = RateTVTests;
+			productReference = 1F3379C31E1927100009D66C /* RateTVTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		1FEEE7E11E0B8C26003E4A02 /* RateTV */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FEEE7EA1E0B8C26003E4A02 /* Build configuration list for PBXNativeTarget "RateTV" */;
@@ -174,6 +226,11 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = toshi0383;
 				TargetAttributes = {
+					1F3379C21E1927100009D66C = {
+						CreatedOnToolsVersion = 8.2;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
 					1FEEE7E11E0B8C26003E4A02 = {
 						CreatedOnToolsVersion = 8.2;
 						LastSwiftMigration = 0820;
@@ -201,11 +258,19 @@
 			targets = (
 				1FEEE7E11E0B8C26003E4A02 /* RateTV */,
 				1FEEE7F21E0B9232003E4A02 /* Example */,
+				1F3379C21E1927100009D66C /* RateTVTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1F3379C11E1927100009D66C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1FEEE7E01E0B8C26003E4A02 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -225,10 +290,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1F3379BF1E1927100009D66C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F3379CF1E19272B0009D66C /* RatePointTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1FEEE7DD1E0B8C26003E4A02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3379BE1E1923E60009D66C /* RatePoint.swift in Sources */,
 				1FEEE7EE1E0B8C51003E4A02 /* RateSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +319,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1F3379CA1E1927100009D66C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FEEE7E11E0B8C26003E4A02 /* RateTV */;
+			targetProxy = 1F3379C91E1927100009D66C /* PBXContainerItemProxy */;
+		};
 		1FEEE8051E0B924F003E4A02 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1FEEE7E11E0B8C26003E4A02 /* RateTV */;
@@ -264,6 +343,31 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1F3379CC1E1927100009D66C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = RateTVTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.toshi0383.RateTVTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1F3379CD1E1927100009D66C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = RateTVTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.toshi0383.RateTVTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		1FEEE7E81E0B8C26003E4A02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -437,6 +541,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1F3379CB1E1927100009D66C /* Build configuration list for PBXNativeTarget "RateTVTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F3379CC1E1927100009D66C /* Debug */,
+				1F3379CD1E1927100009D66C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		1FEEE7DC1E0B8C26003E4A02 /* Build configuration list for PBXProject "RateTV" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -453,6 +565,7 @@
 				1FEEE7EC1E0B8C26003E4A02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1FEEE7FF1E0B9232003E4A02 /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +574,7 @@
 				1FEEE8011E0B9232003E4A02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
