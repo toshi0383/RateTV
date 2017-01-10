@@ -10,6 +10,7 @@
 		1F3379BE1E1923E60009D66C /* RatePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3379BD1E1923E60009D66C /* RatePoint.swift */; };
 		1F3379C81E1927100009D66C /* RateTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEEE7E21E0B8C26003E4A02 /* RateTV.framework */; };
 		1F3379CF1E19272B0009D66C /* RatePointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3379CE1E19272B0009D66C /* RatePointTests.swift */; };
+		1F98F7701E24825000E140B6 /* RateSlider.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1FEEE7ED1E0B8C51003E4A02 /* RateSlider.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FEEE7E71E0B8C26003E4A02 /* RateTV.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEEE7E51E0B8C26003E4A02 /* RateTV.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FEEE7EE1E0B8C51003E4A02 /* RateSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEE7ED1E0B8C51003E4A02 /* RateSlider.swift */; };
 		1FEEE7F61E0B9232003E4A02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEE7F51E0B9232003E4A02 /* AppDelegate.swift */; };
@@ -155,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FEEE7E71E0B8C26003E4A02 /* RateTV.h in Headers */,
+				1F98F7701E24825000E140B6 /* RateSlider.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +550,7 @@
 				1F3379CD1E1927100009D66C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1FEEE7DC1E0B8C26003E4A02 /* Build configuration list for PBXProject "RateTV" */ = {
 			isa = XCConfigurationList;
