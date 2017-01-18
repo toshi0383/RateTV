@@ -11,6 +11,7 @@
 		1F3379C81E1927100009D66C /* RateTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEEE7E21E0B8C26003E4A02 /* RateTV.framework */; };
 		1F3379CF1E19272B0009D66C /* RatePointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3379CE1E19272B0009D66C /* RatePointTests.swift */; };
 		1F77C1BF1E2EE11E00174A1C /* RateCoreGraphicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F77C1BE1E2EE11E00174A1C /* RateCoreGraphicView.swift */; };
+		1F77C1C11E2F0CA800174A1C /* GenerateCodeDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F77C1C01E2F0CA800174A1C /* GenerateCodeDemoViewController.swift */; };
 		1F98F7701E24825000E140B6 /* RateSlider.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1FEEE7ED1E0B8C51003E4A02 /* RateSlider.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FEEE7E71E0B8C26003E4A02 /* RateTV.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEEE7E51E0B8C26003E4A02 /* RateTV.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FEEE7EE1E0B8C51003E4A02 /* RateSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEE7ED1E0B8C51003E4A02 /* RateSlider.swift */; };
@@ -59,6 +60,7 @@
 		1F3379C71E1927100009D66C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F3379CE1E19272B0009D66C /* RatePointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatePointTests.swift; sourceTree = "<group>"; };
 		1F77C1BE1E2EE11E00174A1C /* RateCoreGraphicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateCoreGraphicView.swift; sourceTree = "<group>"; };
+		1F77C1C01E2F0CA800174A1C /* GenerateCodeDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateCodeDemoViewController.swift; sourceTree = "<group>"; };
 		1FEEE7E21E0B8C26003E4A02 /* RateTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RateTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FEEE7E51E0B8C26003E4A02 /* RateTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateTV.h; sourceTree = "<group>"; };
 		1FEEE7E61E0B8C26003E4A02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,11 +144,12 @@
 		1FEEE7F41E0B9232003E4A02 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				1FEEE7F51E0B9232003E4A02 /* AppDelegate.swift */,
-				1FEEE7F71E0B9232003E4A02 /* ViewController.swift */,
-				1FEEE7F91E0B9232003E4A02 /* Main.storyboard */,
-				1FEEE7FC1E0B9232003E4A02 /* Assets.xcassets */,
 				1FEEE7FE1E0B9232003E4A02 /* Info.plist */,
+				1FEEE7F51E0B9232003E4A02 /* AppDelegate.swift */,
+				1F77C1C01E2F0CA800174A1C /* GenerateCodeDemoViewController.swift */,
+				1FEEE7F71E0B9232003E4A02 /* ViewController.swift */,
+				1FEEE7FC1E0B9232003E4A02 /* Assets.xcassets */,
+				1FEEE7F91E0B9232003E4A02 /* Main.storyboard */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 			files = (
 				1FEEE7F81E0B9232003E4A02 /* ViewController.swift in Sources */,
 				1FEEE7F61E0B9232003E4A02 /* AppDelegate.swift in Sources */,
+				1F77C1C11E2F0CA800174A1C /* GenerateCodeDemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -744,6 +744,23 @@
             </objects>
             <point key="canvasLocation" x="686" y="969"/>
         </scene>
+        <!--Generate Code Demo View Controller-->
+        <scene sceneID="PVJ-dy-glo">
+            <objects>
+                <viewController id="ixy-dt-oSI" customClass="GenerateCodeDemoViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W5Y-x1-HIy"/>
+                        <viewControllerLayoutGuide type="bottom" id="dxs-bv-SON"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kV8-g1-sjG">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p3A-pd-2dn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="253" y="2094"/>
+        </scene>
         <!--Root View Controller-->
         <scene sceneID="1uO-hK-bGS">
             <objects>
@@ -792,6 +809,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="Mad-Ly-EqF" kind="show" id="bzC-Uz-9uc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" textLabel="ewc-j0-gHE" style="IBUITableViewCellStyleDefault" id="8v8-CT-sPW">
+                                        <rect key="frame" x="0.0" y="160" width="1920" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8v8-CT-sPW" id="YsD-kB-1mB">
+                                            <rect key="frame" x="0.0" y="0.0" width="1904" height="66"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="GeneratedByCodeDemo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ewc-j0-gHE">
+                                                    <rect key="frame" x="20" y="0.0" width="1864" height="66"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ixy-dt-oSI" kind="show" id="8vH-fm-ZVJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
