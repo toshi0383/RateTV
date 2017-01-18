@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F32363D1E301E4400C52210 /* RateCoreGraphicView.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1F77C1BE1E2EE11E00174A1C /* RateCoreGraphicView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F3379BE1E1923E60009D66C /* RatePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3379BD1E1923E60009D66C /* RatePoint.swift */; };
 		1F3379C81E1927100009D66C /* RateTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEEE7E21E0B8C26003E4A02 /* RateTV.framework */; };
 		1F3379CF1E19272B0009D66C /* RatePointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3379CE1E19272B0009D66C /* RatePointTests.swift */; };
@@ -163,6 +164,7 @@
 			files = (
 				1FEEE7E71E0B8C26003E4A02 /* RateTV.h in Headers */,
 				1F98F7701E24825000E140B6 /* RateSlider.swift in Headers */,
+				1F32363D1E301E4400C52210 /* RateCoreGraphicView.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
