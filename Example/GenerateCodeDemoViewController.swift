@@ -14,6 +14,7 @@ class GenerateCodeDemoViewController: UIViewController {
         super.viewDidLoad()
         setupRateCoreGraphicView()
         setupRateSlider()
+        setupRateCoreGraphicViewInsideUIStackView()
     }
     private func setupRateSlider() {
         let slider = RateSlider()
@@ -36,6 +37,17 @@ class GenerateCodeDemoViewController: UIViewController {
             view.addSubview(v)
             v.setNeedsDisplay()
         }
+    }
+    private func setupRateCoreGraphicViewInsideUIStackView() {
+        let views = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
+            .map{self.create($0)}
+        let stackview = UIStackView(arrangedSubviews: views)
+        stackview.axis = .horizontal
+        stackview.spacing = 5
+        view.addSubview(stackview)
+        stackview.translatesAutoresizingMaskIntoConstraints = false
+        stackview.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        stackview.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     private func create(_ value: CGFloat) -> UIView {
         let rcgv = RateCoreGraphicView()
