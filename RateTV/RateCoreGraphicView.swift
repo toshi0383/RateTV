@@ -104,6 +104,13 @@ public class RateCoreGraphicView: UIView {
         }
     }
 
+    public override func updateConstraints() {
+        translatesAutoresizingMaskIntoConstraints = false
+        widthAnchor.constraint(equalToConstant: fullImage!.size.width).isActive = true
+        heightAnchor.constraint(equalToConstant: fullImage!.size.height).isActive = true
+        super.updateConstraints()
+    }
+
     // MARK: Utilities
     private func xOrigin(atIndex index: Int) -> CGFloat {
         let starsWidth = fullImage!.size.width*CGFloat(index)
