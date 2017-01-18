@@ -9,11 +9,15 @@
 import UIKit
 
 public class RateCoreGraphicView: UIView {
+
     private var _value: RatePoint = .zero {
         didSet {
             setNeedsDisplay()
         }
     }
+    private var _allSize: CGSize = .zero
+
+    // MARK: Outlets
     @IBInspectable public var fullImage: UIImage?
     @IBInspectable public var zeroImage: UIImage?
     @IBInspectable public var spacing: CGFloat = 0
@@ -52,7 +56,7 @@ public class RateCoreGraphicView: UIView {
         let fmaxRate = CGFloat(maxRate)
         let allWidth = (starSize.width*fmaxRate) + (spacing*fmaxRate)
         let allStarWidth = starSize.width*fmaxRate
-        let allSize = CGSize(
+        _allSize = CGSize(
             width: allWidth,
             height: starSize.height
         )
@@ -93,7 +97,7 @@ public class RateCoreGraphicView: UIView {
         if _value < maxRate {
             if (needsClip) {
                 context.saveGState();
-                context.clip(to: CGRect(x: boundaryX, y: 0, width: allSize.width - spacing - boundaryX, height: starSize.height))
+                context.clip(to: CGRect(x: boundaryX, y: 0, width: _allSize.width - spacing - boundaryX, height: starSize.height))
             }
             for i in (boundaryIndex..<maxRate) {
                 zeroImage.draw(at: CGPoint(x: xOrigin(atIndex: i), y: 0))
@@ -106,8 +110,8 @@ public class RateCoreGraphicView: UIView {
 
     public override func updateConstraints() {
         translatesAutoresizingMaskIntoConstraints = false
-        widthAnchor.constraint(equalToConstant: fullImage!.size.width).isActive = true
-        heightAnchor.constraint(equalToConstant: fullImage!.size.height).isActive = true
+        widthAnchor.constraint(equalToConstant: _allSize.width).isActive = true
+        heightAnchor.constraint(equalToConstant: _allSize.height).isActive = true
         super.updateConstraints()
     }
 
