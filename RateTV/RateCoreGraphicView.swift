@@ -9,11 +9,15 @@
 import UIKit
 
 public class RateCoreGraphicView: UIView {
+
     private var _value: RatePoint = .zero {
         didSet {
             setNeedsDisplay()
         }
     }
+    private var _allSize: CGSize = .zero
+
+    // MARK: Outlets
     @IBInspectable public var fullImage: UIImage?
     @IBInspectable public var zeroImage: UIImage?
     @IBInspectable public var spacing: CGFloat = 0
@@ -50,15 +54,18 @@ public class RateCoreGraphicView: UIView {
             height: floor(fullImage.size.height)
         )
         let fmaxRate = CGFloat(maxRate)
-        let allWidth = (starSize.width*fmaxRate) + (spacing*fmaxRate)
-        let allStarWidth = starSize.width*fmaxRate
-        let allSize = CGSize(
+        let needsClip = _value.point != 0
+        let numberOfSpacing: CGFloat = CGFloat(self.numberOfSpacing())
+
+        let allNumberOfSpacing: CGFloat = maxRate == 0 ? 0 : CGFloat(maxRate) - 1
+        let allWidth = (starSize.width*fmaxRate) + (spacing*allNumberOfSpacing)
+        _allSize = CGSize(
             width: allWidth,
             height: starSize.height
         )
-        let needsClip = _value.point != 0
-        let numberOfSpacing: CGFloat = _value.number == 0 ? 0 : CGFloat(_value.number) - 1
-        let _boundaryX: CGFloat = (allStarWidth*_value.cgfloatValue/fmaxRate) + spacing*numberOfSpacing
+        let valueNumberWidth = CGFloat(_value.number) * starSize.width
+        let valuePointWidth = starSize.width*RatePoint(number: 0, point: _value.point).cgfloatValue
+        let _boundaryX: CGFloat = valueNumberWidth + valuePointWidth + spacing*numberOfSpacing
         let boundaryX: CGFloat
         if !needsClip {
             boundaryX = _boundaryX
@@ -93,7 +100,7 @@ public class RateCoreGraphicView: UIView {
         if _value < maxRate {
             if (needsClip) {
                 context.saveGState();
-                context.clip(to: CGRect(x: boundaryX, y: 0, width: allSize.width - spacing - boundaryX, height: starSize.height))
+                context.clip(to: CGRect(x: boundaryX, y: 0, width: allWidth - boundaryX, height: starSize.height))
             }
             for i in (boundaryIndex..<maxRate) {
                 zeroImage.draw(at: CGPoint(x: xOrigin(atIndex: i), y: 0))
@@ -104,17 +111,16 @@ public class RateCoreGraphicView: UIView {
         }
     }
 
-    public override func updateConstraints() {
-        translatesAutoresizingMaskIntoConstraints = false
-        widthAnchor.constraint(equalToConstant: fullImage!.size.width).isActive = true
-        heightAnchor.constraint(equalToConstant: fullImage!.size.height).isActive = true
-        super.updateConstraints()
-    }
-
     // MARK: Utilities
     private func xOrigin(atIndex index: Int) -> CGFloat {
         let starsWidth = fullImage!.size.width*CGFloat(index)
         let spaceWidth = spacing*CGFloat(index)
         return starsWidth + spaceWidth
+    }
+    private func numberOfSpacing() -> Int {
+        if _value.number == 0 {
+            return 0
+        }
+        return _value.point == 0 ? _value.number-1 : _value.number
     }
 }
