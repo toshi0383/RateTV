@@ -29,14 +29,16 @@ class ViewController: UIViewController {
                 [weak self] value in
                 print("value: \(value)")
                 self?.outputLabel2.text = "\(value)"
+                self?.outputCoreGraphicView2.value = CGFloat(value)
             }
         }
     }
+    @IBOutlet weak var outputCoreGraphicView2: RateCoreGraphicView!
     @IBOutlet weak var output: RateSlider!
     override func viewDidLoad() {
         super.viewDidLoad()
         input.value = 5.0
-        input2.value = 2.5
+        input2.value = 2.0
     }
 
     @IBAction func enableDebug() {

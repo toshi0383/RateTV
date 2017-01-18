@@ -18,6 +18,9 @@ struct RatePoint: CustomStringConvertible, Comparable {
         self.number = n
         self.point = p
     }
+    init(cgfloat: CGFloat) {
+        self.init(float: Float(cgfloat))
+    }
     init(float: Float) {
         self.number = Int(float*10)/10
         self.point = Int(float*10)-self.number*10
@@ -29,11 +32,20 @@ struct RatePoint: CustomStringConvertible, Comparable {
         assert(point == 0)
         return number
     }
+    var cgfloatValue: CGFloat {
+        return CGFloat(number*10+point)/10
+    }
     static func + (lhs: RatePoint, rhs: RatePoint) -> RatePoint {
         return RatePoint(number: lhs.number+rhs.number, point: lhs.point+rhs.point)
     }
     static func == (lhs: RatePoint, rhs: RatePoint) -> Bool {
         return lhs.number == rhs.number && lhs.point == rhs.point
+    }
+    static func > (lhs: RatePoint, rhs: RatePoint) -> Bool {
+        if lhs.number == rhs.number {
+            return lhs.point > rhs.point
+        }
+        return lhs.number > rhs.number
     }
     static func < (lhs: RatePoint, rhs: RatePoint) -> Bool {
         if lhs.number == rhs.number {
@@ -41,11 +53,23 @@ struct RatePoint: CustomStringConvertible, Comparable {
         }
         return lhs.number < rhs.number
     }
+    static func >= (lhs: RatePoint, rhs: RatePoint) -> Bool {
+        return !(lhs < rhs)
+    }
     static func <= (lhs: RatePoint, rhs: RatePoint) -> Bool {
-        return !(lhs.number > rhs.number)
+        return !(lhs > rhs)
+    }
+    static func - (left: RatePoint, int: Int) -> RatePoint {
+        return RatePoint(number: left.number-int, point: left.point)
     }
     static func * (left: RatePoint, int: Int) -> RatePoint {
         return RatePoint(number: left.number*int, point: left.point*int)
+    }
+    static func < (left: RatePoint, int: Int) -> Bool {
+        return !(left >= RatePoint(number: int, point: 0))
+    }
+    static func > (left: RatePoint, int: Int) -> Bool {
+        return !(left <= RatePoint(number: int, point: 0))
     }
     static func <= (left: RatePoint, int: Int) -> Bool {
         return !(left > RatePoint(number: int, point: 0))

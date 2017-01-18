@@ -25,7 +25,7 @@ public class RateSlider: UIView {
         }
     }
 
-    @IBInspectable public var initialValue: Float = 0.0
+    @IBInspectable public var initialValue: CGFloat = 0.0
     @IBInspectable public var zeroImage: UIImage?
     @IBInspectable public var halfImage: UIImage?
     @IBInspectable public var fullImage: UIImage?
@@ -64,10 +64,12 @@ public class RateSlider: UIView {
         if config == nil {
             self.config = Config(
                 zero: zeroImage, half: halfImage, full: fullImage,
-                spacing: spacing, maxRate: maxRate
+                spacing: spacing, maxRate: maxRate,
+                initialValue: RatePoint(cgfloat: initialValue)
             )
         }
         updateVisible()
+
         if !labelize {
             updateInvisible()
         }
@@ -79,7 +81,7 @@ public class RateSlider: UIView {
             )
             addSubview(stackview)
             self.stackview = stackview
-            stackview.value = RatePoint(float: initialValue)
+            stackview.value = RatePoint(cgfloat: initialValue)
         } else {
             stackview?.value = RatePoint(float: value)
         }
@@ -167,6 +169,7 @@ struct Config {
     let full: UIImage?
     let spacing: CGFloat
     let maxRate: Int
+    let initialValue: RatePoint
     var maxRateDoubled: Int {
         return maxRate * 2
     }
