@@ -31,9 +31,6 @@ class GenerateCodeDemoViewController: UIViewController {
         let views = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
             .map{self.create($0)}
         for (i, v) in views.enumerated() {
-            let origin = CGPoint(x: i*(60+5), y: 300)
-            let size = CGSize(width: 60, height: 60)
-            v.frame = CGRect(origin: origin, size: size)
             view.addSubview(v)
             v.setNeedsDisplay()
         }
@@ -58,6 +55,10 @@ class GenerateCodeDemoViewController: UIViewController {
         rcgv.spacing = 5
         rcgv.maxRate = 1
         rcgv.value = value
+        let size = CGSize(width: 60, height: 60)
+        rcgv.translatesAutoresizingMaskIntoConstraints = false
+        rcgv.widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        rcgv.heightAnchor.constraint(equalToConstant: size.height).isActive = true
         return rcgv
     }
 }
